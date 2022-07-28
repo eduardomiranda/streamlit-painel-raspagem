@@ -150,9 +150,9 @@ if __name__ == "__main__":
 	ultima2h   = consultaTotalCEPsDistintosJaProcessadosNasUltimasHoras(2)
 	ultima24h  = consultaTotalCEPsDistintosJaProcessadosNasUltimasHoras(24)
 	ultima48h  = consultaTotalCEPsDistintosJaProcessadosNasUltimasHoras(24 * 2)
-	ultima1s   = consultaTotalCEPsDistintosJaProcessadosNasUltimasHoras(7 * 24)
-	ultima2s   = consultaTotalCEPsDistintosJaProcessadosNasUltimasHoras(7 * 24 * 2)
-	ultimo365d = consultaTotalCEPsDistintosJaProcessadosNasUltimasHoras(34 * 365)
+	ultima1s   = consultaTotalCEPsDistintosJaProcessadosNasUltimasHoras(24 * 7)
+	ultima2s   = consultaTotalCEPsDistintosJaProcessadosNasUltimasHoras(24 * 7 * 2)
+	ultimo365d = consultaTotalCEPsDistintosJaProcessadosNasUltimasHoras(24 * 365)
 
 	totalPlanosColetados = consultaTotalPlanosColetados()
 	totalCEPsDistintos = consultaTotalCEPsDistintos()
@@ -177,7 +177,7 @@ if __name__ == "__main__":
 	
 	st.text("")
 	st.text("")
-	st.subheader("{:.2f}% já concluído.".format( porcentagemConcluida ) )
+	st.subheader("{:.0f} CEPs raspados. {:.2f}% já concluído.".format( ultimo365d, porcentagemConcluida ) )
 	
 	my_bar = st.progress(0)
 	my_bar.progress( int( porcentagemConcluida )  )
