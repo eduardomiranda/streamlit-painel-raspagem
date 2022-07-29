@@ -166,7 +166,7 @@ if __name__ == "__main__":
 	
 	st.title("Melhor Plano")
 	st.title("Status em tempo real da raspagem")
-	st.subheader("Total de CEPs processados") 
+	st.subheader("CEPs processados") 
 
 	st.text("")
 	
@@ -177,12 +177,13 @@ if __name__ == "__main__":
 	
 	st.text("")
 	st.text("")
-	st.subheader("{:.0f} CEPs raspados. {:.2f}% já concluído.".format( ultimo365d, porcentagemConcluida ) )
-	
+	st.subheader("{:.0f} CEPs processados de um total de {:.0f}. ".format( ultimo365d, totalCEPsDistintos) )
+	st.caption("{:.2f}% já concluído.".format(porcentagemConcluida))
+
 	my_bar = st.progress(0)
 	my_bar.progress( int( porcentagemConcluida )  )
 	
 	st.text("")
 	st.text("")
 	st.subheader("Tempo estimado para conclusão: {:.1f} dias".format( round(tempoEstimadoEmDias,1) ) )
-	st.text("A estimativa foi feita com o total de CEPs processados nas últimas 24 horas.")
+	st.text("Estimativa feita com o total de CEPs processados nas últimas 24 horas.")
