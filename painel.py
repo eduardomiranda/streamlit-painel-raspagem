@@ -157,23 +157,63 @@ if __name__ == "__main__":
 	totalPlanosColetados = consultaTotalPlanosColetados()
 	totalCEPsDistintos = consultaTotalCEPsDistintos()
 
-	deltaUltima1h  = "{:.2f} %".format(round( ultima1h  / (ultima2h - ultima1h )   , 2)) 
-	deltaUltima24h = "{:.2f} %".format(round( ultima24h / (ultima48h - ultima24h ) , 2)) 
-	deltaUltima1s  = "{:.2f} %".format(round( ultima1s  / (ultima2s - ultima1s )   , 2)) 
+
+	#
+	# Cálculo do percentual comparativo
+	#
+
+	totalHora1 = ultima1h
+	totalHora2 = ultima2h - ultima1h
+
+	if totalHora1 > totalHora2:
+		deltaUltima1h = (totalHora1 / totalHora2 - 1) * 100
+	else: 
+		deltaUltima1h = (1 - totalHora1 / totalHora2) * 100 * -1
+
+	deltaUltima1hStr  = "{:.2f} %".format(round( deltaUltima1h, 2)) 
+
+
+
+	totalHora1a24  = ultima24h
+	totalHora25a48 = ultima48h - ultima24h
+
+	if totalHora1a24 > totalHora25a48:
+		deltaUltima24h = (totalHora1a24 / totalHora25a48 - 1) * 100
+	else:
+		deltaUltima24h = (1 - totalHora1a24 / totalHora25a48) * 100 * -1
+
+	deltaUltima24hStr = "{:.2f} %".format(round( deltaUltima24h, 2))
+
+
+
+	totalSemana1 = ultima1s
+	totalSemana2 = ultima2s - ultima1s
+
+	if totalSemana1 > totalSemana2:
+		deltaUltima1s = (totalSemana1 / totalSemana2 - 1) * 100
+	else:
+		deltaUltima1s = (1 - totalSemana1 / totalSemana2) * 100 * -1
+	 
+	deltaUltima1sStr  = "{:.2f} %".format(round( deltaUltima1s, 2)) 
+
+
 	
 	porcentagemConcluida = (ultimo365d / totalCEPsDistintos) * 100
 	tempoEstimadoEmDias = (totalCEPsDistintos - ultimo365d) / ultima24h
 	
+
+
 	st.title("Melhor Plano")
 	st.title("Status em tempo real da raspagem")
-	st.subheader("CEPs processados") 
+	st.subheader("CEPs processados e planos coletados.") 
 
 	st.text("")
 	
-	col1, col2, col3 = st.columns(3)
-	col1.metric(label = "Última hora"    , value = str(ultima1h) , delta = deltaUltima1h )
-	col2.metric(label = "Últimas 24 horas", value = str(ultima24h), delta = deltaUltima24h)
-	col3.metric(label = "Última semana"  , value = str(ultima1s) , delta = deltaUltima1s)
+	col1, col2, col3, col4 = st.columns(4)
+	col1.metric(label = "Última hora"      , value = str(ultima1h) , delta = deltaUltima1hStr )
+	col2.metric(label = "Últimas 24 horas" , value = str(ultima24h), delta = deltaUltima24hStr)
+	col3.metric(label = "Última semana"    , value = str(ultima1s) , delta = deltaUltima1sStr )
+	col4.metric(label = "Planos coletados" , value = str(totalPlanosColetados) )
 	
 	st.text("")
 	st.text("")
