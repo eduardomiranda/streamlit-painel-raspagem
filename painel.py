@@ -145,6 +145,9 @@ if __name__ == "__main__":
 	# 
 	# Deploying a web app using MySQL server via Streamlit
 	# https://medium.com/@itssaad.muhammad/deploying-a-web-app-using-mysql-server-via-streamlit-ca28ecd02bb0
+	#
+	# Python String Format Cookbook
+	# https://mkaz.blog/code/python-string-format-cookbook/
 
 	ultima1h   = consultaTotalCEPsDistintosJaProcessadosNasUltimasHoras(1)
 	ultima2h   = consultaTotalCEPsDistintosJaProcessadosNasUltimasHoras(2)
@@ -205,20 +208,29 @@ if __name__ == "__main__":
 
 	st.title("Melhor Plano")
 	st.title("Status em tempo real da raspagem")
-	st.subheader("CEPs processados e planos coletados.") 
+	st.text("")
+
+	st.subheader("CEPs processados") 
+	st.text("")
+	
+	l1col1, l1col2, l1col3 = st.columns(3)
+	l1col1.metric(label = "Última hora"      , value = str(ultima1h) , delta = deltaUltima1hStr )
+	l1col2.metric(label = "Últimas 24 horas" , value = str(ultima24h), delta = deltaUltima24hStr)
+	l1col3.metric(label = "Última semana"    , value = str(ultima1s) , delta = deltaUltima1sStr )
 
 	st.text("")
+	st.subheader("Outras métricas") 
+	st.text("")
 	
-	col1, col2, col3, col4 = st.columns(4)
-	col1.metric(label = "Última hora"      , value = str(ultima1h) , delta = deltaUltima1hStr )
-	col2.metric(label = "Últimas 24 horas" , value = str(ultima24h), delta = deltaUltima24hStr)
-	col3.metric(label = "Última semana"    , value = str(ultima1s) , delta = deltaUltima1sStr )
-	col4.metric(label = "Planos coletados" , value = str(totalPlanosColetados) )
+	l2col1, l2col2, l2col3 = st.columns(3)
+	l2col1.metric(label = "Planos coletados" , value = str(totalPlanosColetados) )
+	l2col2.metric(label = "CEPs processados" , value = str(ultimo365d) )
+	l2col3.metric(label = "Total de CEPs a processar" , value = str(totalCEPsDistintos) )
 	
+
 	st.text("")
 	st.text("")
-	st.subheader("{:.0f} CEPs processados de um total de {:.0f}. ".format( ultimo365d, totalCEPsDistintos) )
-	st.caption("{:.2f}% já concluído.".format(porcentagemConcluida))
+	st.subheader("Progresso: {:.2f}% já concluído.".format(porcentagemConcluida))
 
 	my_bar = st.progress(0)
 	my_bar.progress( int( porcentagemConcluida )  )
@@ -226,4 +238,4 @@ if __name__ == "__main__":
 	st.text("")
 	st.text("")
 	st.subheader("Tempo estimado para conclusão: {:.1f} dias".format( round(tempoEstimadoEmDias,1) ) )
-	st.text("Estimativa feita com o total de CEPs processados nas últimas 24 horas.")
+	st.caption("Estimativa feita com o total de CEPs processados nas últimas 24 horas.")
