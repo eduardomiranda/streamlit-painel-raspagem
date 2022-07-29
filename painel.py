@@ -224,13 +224,13 @@ if __name__ == "__main__":
 	
 	l2col1, l2col2, l2col3 = st.columns(3)
 	l2col1.metric(label = "Planos coletados" , value = str(totalPlanosColetados) )
-	l2col2.metric(label = "CEPs processados" , value = str(ultimo365d) )
-	l2col3.metric(label = "Total de CEPs a processar" , value = str(totalCEPsDistintos) )
+	l2col2.metric(label = "Total de CEPs"    , value = str(totalCEPsDistintos) )
+	l2col3.metric(label = "CEPs processados" , value = str(ultimo365d) )
 	
 
 	st.text("")
 	st.text("")
-	st.subheader("Progresso: {:.2f}% já concluído.".format(porcentagemConcluida))
+	st.subheader("{:.2f}% dos CEPS já foram processados.".format(porcentagemConcluida))
 
 	my_bar = st.progress(0)
 	my_bar.progress( int( porcentagemConcluida )  )
@@ -238,4 +238,4 @@ if __name__ == "__main__":
 	st.text("")
 	st.text("")
 	st.subheader("Tempo estimado para conclusão: {:.1f} dias".format( round(tempoEstimadoEmDias,1) ) )
-	st.caption("Estimativa feita com o total de CEPs processados nas últimas 24 horas.")
+	st.caption("Estimativa feita utilizando o total de CEPs processados nas últimas 24 horas.")
