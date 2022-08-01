@@ -170,9 +170,9 @@ if __name__ == "__main__":
 	totalHora2 = ultima2h - ultima1h
 
 	if totalHora1 > totalHora2:
-		deltaUltima1h = (totalHora1 / totalHora2 - 1) * 100      if 0 == totalHora2 else  math.inf
+		deltaUltima1h = (totalHora1 / totalHora2 - 1) * 100      if 0 != totalHora2 else  math.inf
 	else:
-		deltaUltima1h = (1 - totalHora1 / totalHora2) * 100 * -1 if 0 == totalHora2 else 0
+		deltaUltima1h = (1 - totalHora1 / totalHora2) * 100 * -1 if 0 != totalHora2 else 0
 
 	deltaUltima1hStr  = "{:.2f} %".format(round( deltaUltima1h, 2)) 
 
@@ -182,9 +182,9 @@ if __name__ == "__main__":
 	totalHora25a48 = ultima48h - ultima24h
 
 	if totalHora1a24 > totalHora25a48:
-		deltaUltima24h = (totalHora1a24 / totalHora25a48 - 1) * 100      if 0 == totalHora25a48 else  math.inf
+		deltaUltima24h = (totalHora1a24 / totalHora25a48 - 1) * 100      if 0 != totalHora25a48 else  math.inf
 	else:
-		deltaUltima24h = (1 - totalHora1a24 / totalHora25a48) * 100 * -1 if 0 == totalHora25a48 else  0
+		deltaUltima24h = (1 - totalHora1a24 / totalHora25a48) * 100 * -1 if 0 != totalHora25a48 else  0
 
 	deltaUltima24hStr = "{:.2f} %".format(round( deltaUltima24h, 2))
 
@@ -194,9 +194,9 @@ if __name__ == "__main__":
 	totalSemana2 = ultima2s - ultima1s
 
 	if totalSemana1 > totalSemana2:
-		deltaUltima1s = (totalSemana1 / totalSemana2 - 1) * 100      if 0 == totalSemana2 else  math.inf
+		deltaUltima1s = (totalSemana1 / totalSemana2 - 1) * 100      if 0 != totalSemana2 else  math.inf
 	else:
-		deltaUltima1s = (1 - totalSemana1 / totalSemana2) * 100 * -1 if 0 == totalSemana2 else 0
+		deltaUltima1s = (1 - totalSemana1 / totalSemana2) * 100 * -1 if 0 != totalSemana2 else 0
 	 
 	deltaUltima1sStr  = "{:.2f} %".format(round( deltaUltima1s, 2)) 
 
