@@ -91,10 +91,7 @@ def consultaTotalCEPsDistintosJaProcessadosNasUltimasHoras( ultimasHoras ):
 		d = dt_now - timedelta(hours=ultimasHoras)
 
 		query = sqlalchemy.select([sqlalchemy.func.count(sqlalchemy.func.distinct(tbCeps.columns.co_cep))])\
-		          .where( and_( tbCeps.columns.statusProcessamento == 2,\
-		                        tbCeps.columns.fimRaspagem >= d,\
-		                        and_( or_( and_( tbCeps.columns.totalResultados > 0, tbCeps.columns.planoDisponivel == True ), \
-		                        	       tbCeps.columns.planoDisponivel == False ) ) ) )
+		          .where( and_( tbCeps.columns.statusProcessamento == 2, tbCeps.columns.fimRaspagem >= d ) )
 		
 		count = connection.execute(query).scalar()
 
