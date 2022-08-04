@@ -214,7 +214,7 @@ if __name__ == "__main__":
 	l1col1, l1col2, l1col3 = st.columns(3)
 	l1col1.metric(label = "Última hora"      , value = str(ultima1h) , delta = deltaUltima1hStr )
 	l1col2.metric(label = "Últimas 24 horas" , value = str(ultima24h), delta = deltaUltima24hStr)
-	l1col3.metric(label = "Última semana"    , value = str(ultima1s) , delta = deltaUltima1sStr )
+	l1col3.metric(label = "Últimos 7 dias"    , value = str(ultima1s) , delta = deltaUltima1sStr )
 
 	st.text("")
 	st.subheader("Outras métricas") 
